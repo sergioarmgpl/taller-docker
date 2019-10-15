@@ -30,17 +30,18 @@ Para crear una imagen debes de utilizar el comando docker run, en este caso crea
 ```
 docker run -it ubuntu:18.04 /bin/bash
 ```
-Al ser creado el container creara un id único el cual puedes obtener cuando se coloca el nuevo prompt luego de terminar de ejecutar el comando anterior, veras algo como:
+Al ser creado el container creara un id único, el cual puedes obtener cuando se coloca el nuevo prompt, al terminar de ejecutar el comando anterior, verás algo como:
 ```
 root@e6b272bfcbc2:/#
 ```
-Puedes realizar distintas operaciones con este id, regularmente solo necesitaras las primeras 3 o 4 letras del mismo
-Continuando, luego ejecutar dentro el comando ls para mostrar los archivos actuales en la carpeta que te encuentres
+Puedes realizar distintas operaciones con este id, regularmente solo necesitarás las primeras 3 o 4 letras del mismo. 
+
+Continuando, luego ejecuta dentro del container el comando ls para mostrar los archivos actuales en la carpeta que te encuentres
 ```
 ls
 ```
-En otra terminal ingresa y ejecuta el comando
-docker ps -a podrás ver que dicho container se encuentra en estado activo: verás una salida como la siguiente:
+
+En otra terminal ingresa y ejecuta el comando docker ps -a podrás ver que dicho container se encuentra en estado activo: verás una salida como la siguiente:
 ```
 docker ps -a
 ```
@@ -50,20 +51,24 @@ Luego en la línea de comandos del container escribe exit, para salir y finaliza
 ```
 exit 
 ```
-Ahora revisa el nuevamente los containers corriendo con:
+Ahora revisa el nuevamente los containers corriendo en otra terminal con:
 ```
 docker ps -a
 ```
-![Alt text](imgs/ps2.png?raw=true "Up time")
+![Alt text](imgs/ps2.png?raw=true "exit")
 
-Ahora veras que el estado es exit, es decir la ejecución del container finalizo, pero no ha sido destruido
+Ahora verás que el estado es exit, es decir la ejecución del container finalizo, pero no ha sido destruido.
+
 Ahora para volver a iniciar el container ejecuta:
 ```
 docker start id_container
 ```
-Esto reiniciar la ejecución de container con el id que hallas colocado
+Esto reinicia la ejecución de container con el id que hallas colocado
+
 Ahora para volver a ingresar, puedes ejecutar
 ```
 docker exec -it id_container /bin/bash
 ```
+![Alt text](imgs/exec.png?raw=true "Exec")
+
 Y esto ejecutara una nueva consola adicional a la que está ejecutándose por el /bin/bash inicial, y no afectara si la finalizas con exit, el container seguirá ejecutándose.
