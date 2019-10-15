@@ -1,4 +1,4 @@
-# Taller introductorio de Docker
+# Taller 1: Introducción a Docker
 Bienvenido a este taller básico de Docker, esta divido en varias secciones, para que tengas una introducción rápida al uso de Docker para crear containers.
 
 ## Requisitos
