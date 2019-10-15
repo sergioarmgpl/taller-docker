@@ -25,7 +25,7 @@ docker pull ubuntu:18.04
 ```
 Donde ubuntu es el repositorio y el tag a bajar es 18.04, para mayor referencia puedes visitar 
 https://hub.docker.com/ y bajar la imagen que necesites con el tag que necesites
-## Paso 3: Crear una imagen de Docker
+## Paso 3: Crear container con Docker y administrarlo
 Para crear una imagen debes de utilizar el comando docker run, en este caso crearemos un container con Ubuntu 18.04 y ejecutaremos dentro el comando /bin/bash, el cual es una consola o terminal, nótese que al terminar la ejecución del /bin/bash con exit, el comando con el que fue creado el container termina su ejecución y el container es finalizado con el estado exit(0), finalizado más no eliminado
 ```
 docker run -it ubuntu:18.04 /bin/bash
