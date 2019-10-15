@@ -25,14 +25,44 @@ docker pull ubuntu:18.04
 ```
 Donde ubuntu es el repositorio y el tag a bajar es 18.04, para mayor referencia puedes visitar 
 https://hub.docker.com/ y bajar la imagen que necesites con el tag que necesites
-
 ## Paso 3: Crear una imagen de Docker
-Para crear una imagen debes de utilizar el comando docker run, en este caso crearemos un container con Ubuntu 18.04 y ejecutaremos dentro el comando /bin/bash, el cual es una consola o terminal, notece que al terminar la ejecución del /bin/bash con exit, el comando con el que fue creado el container termina su ejecución y el container es finalizado con el estado exit(0), finalizado más no eliminado
+Para crear una imagen debes de utilizar el comando docker run, en este caso crearemos un container con Ubuntu 18.04 y ejecutaremos dentro el comando /bin/bash, el cual es una consola o terminal, nótese que al terminar la ejecución del /bin/bash con exit, el comando con el que fue creado el container termina su ejecución y el container es finalizado con el estado exit(0), finalizado más no eliminado
 ```
 docker run -it ubuntu:18.04 /bin/bash
 ```
-
-Luego ejecutar dentro el comando ls
+Al ser creado el container creara un id único el cual puedes obtener cuando se coloca el nuevo prompt luego de terminar de ejecutar el comando anterior, veras algo como:
+```
+root@e6b272bfcbc2:/#
+```
+Puedes realizar distintas operaciones con este id, regularmente solo necesitaras las primeras 3 o 4 letras del mismo
+Continuando, luego ejecutar dentro el comando ls para mostrar los archivos actuales en la carpeta que te encuentres
 ```
 ls
 ```
+En otra terminal ingresa y ejecuta el comando
+docker ps -a podrás ver que dicho container se encuentra en estado activo: verás una salida como la siguiente:
+root@docker:~# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+e6b272bfcbc2        ubuntu:18.04        "/bin/bash"         3 minutes ago       Up 3 minutes                            admiring_dewdney
+root@docker:~#
+
+
+Luego en la línea de comandos del container escribe exit, para salir y finalizar el container
+```
+exit 
+```
+Ahora revisa el nuevamente los containers corriendo con:
+```
+docker ps -a
+```
+Ahora veras que el estado es exit, es decir la ejecución del container finalizo, pero no ha sido destruido
+Ahora para volver a iniciar el container ejecuta:
+```
+docker start id_container
+```
+Esto reiniciar la ejecución de container con el id que hallas colocado
+Ahora para volver a ingresar, puedes ejecutar
+```
+docker exec -it id_container /bin/bash
+```
+Y esto ejecutara una nueva consola adicional a la que está ejecutándose por el /bin/bash inicial, y no afectara si la finalizas con exit, el container seguirá ejecutándose.
