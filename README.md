@@ -4,3 +4,4 @@ En este repositorio encontrarás algunos talleres básicos para aprender Docker,
 ## Contenidos
 Estos son los talleres disponibles en este repositorio
 - [ Taller 1: Introducción a Docker ](taller1-introduccion.md)
+- [ Taller 2: Acceso público de containers por puertos ](taller2-acceso-puertos.md)
