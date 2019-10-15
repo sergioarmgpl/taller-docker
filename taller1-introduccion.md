@@ -41,7 +41,10 @@ ls
 ```
 En otra terminal ingresa y ejecuta el comando
 docker ps -a podrás ver que dicho container se encuentra en estado activo: verás una salida como la siguiente:
-XXXXXX
+```
+docker ps -a
+```
+![Alt text](imgs/ps1.png?raw=true "Up time")
 
 Luego en la línea de comandos del container escribe exit, para salir y finalizar el container
 ```
@@ -51,6 +54,8 @@ Ahora revisa el nuevamente los containers corriendo con:
 ```
 docker ps -a
 ```
+![Alt text](imgs/ps2.png?raw=true "Up time")
+
 Ahora veras que el estado es exit, es decir la ejecución del container finalizo, pero no ha sido destruido
 Ahora para volver a iniciar el container ejecuta:
 ```
