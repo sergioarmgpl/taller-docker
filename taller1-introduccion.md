@@ -41,11 +41,7 @@ ls
 ```
 En otra terminal ingresa y ejecuta el comando
 docker ps -a podrás ver que dicho container se encuentra en estado activo: verás una salida como la siguiente:
-root@docker:~# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e6b272bfcbc2        ubuntu:18.04        "/bin/bash"         3 minutes ago       Up 3 minutes                            admiring_dewdney
-root@docker:~#
-
+XXXXXX
 
 Luego en la línea de comandos del container escribe exit, para salir y finalizar el container
 ```
