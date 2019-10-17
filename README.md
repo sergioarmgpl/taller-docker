@@ -7,3 +7,8 @@ Estos son los talleres disponibles en este repositorio
 - [ Taller 2: Acceso público de containers por puertos ](taller2-acceso-puertos.md)
 - [ Taller 3: Creación de imágenes de containers con Dockerfiles ](taller3-dockerfiles.md)
 
+### Clonar el repositorio
+Para clonar el repositorio ejecuta el comando:
+```
+git clone https://github.com/sergioarmgpl/taller-docker.git
+```
