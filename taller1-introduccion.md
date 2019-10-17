@@ -72,3 +72,20 @@ docker exec -it id_container /bin/bash
 ![Alt text](imgs/exec.png?raw=true "Exec")
 
 Y esto ejecutara una nueva consola adicional a la que está ejecutándose por el /bin/bash inicial, y no afectara si la finalizas con exit, el container seguirá ejecutándose.
+
+## Paso 4: Detener y borrar el container
+Para detener el container puedes ejecutar el comando:
+
+```
+docker stop id_container
+```
+Esto solo detendrá su ejecución pero no lo eliminará
+
+Para poder eliminar y borrar el container debes de ejecutar el siguiente comando:
+```
+docker rm id_container
+```
+Para poder eliminarlo debes detener primero el container. En algunos casos debes usar la opción -f para forzar que se borre, según las dependencias con otras imágenes o containers. Puedes comprabar que ya no exista con el comando:
+```
+docker ps -a
+```
