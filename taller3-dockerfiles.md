@@ -81,5 +81,6 @@ Para monitorear tu container puedes ejecutar el siguiente comando:
 ```
 docker stats apacheNuevo
 ```
+Presiona Ctrl+C para cancelar el monitoreo del container
 
 No olvides detener una imagen sino la estas utilizando.
