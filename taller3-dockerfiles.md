@@ -59,6 +59,13 @@ Ahora subimos la imagen al repositorio
 ```
 docker push usuarioDockerHub/apache
 ```
+
+Si deseas puedes usar el script build.sh dandole permisos de ejecución al mismo, ejecutandoló y mandando de parámetro el nombre del usuario del DockerHub(Debes estar en la carpeta del Dockerfile)
+```
+chmod 777 build.sh
+./build usuarioDockerHub
+```
+
 ## Paso 3: Crear la imagen creada
 En dado caso la imagen sea privada debes de logearte con el usuario correspondiente para poder descargarla. Para poder usarla ejecutarás el siguiente comando:
 
