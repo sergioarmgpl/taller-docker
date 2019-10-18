@@ -12,3 +12,10 @@ Para clonar el repositorio ejecuta el comando:
 ```
 git clone https://github.com/sergioarmgpl/taller-docker.git
 ```
+
+### Usar el servidor del demo
+Para conectarte al servidor del demo baja la llave ubicada en la carpeta key y ejecuta:
+```
+ssh -i taller-docker.pem root@IP_SERVIDOR
+```
+Puedes usar putty o cualquier cliente para conectarte.
