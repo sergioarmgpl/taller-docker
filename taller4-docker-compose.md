@@ -1,91 +1,68 @@
-# Taller 1: Introducción a Docker
-Bienvenido a este taller básico de Docker, esta divido en varias secciones, para que tengas una introducción rápida al uso de Docker para crear containers.
+# Taller 4: Uso de Docker Compose
+Bienvenido a este taller, en el cual aprenderás a utilizar Docker Compose, para orquestar de forma local container, y crear un ambiente de pruebas para agrupar microservicios a través de un archivo de configuración, el cual te permite administrar totalmente un grupo de servicios, siendo útil para pruebas en ambientes de desarrollo y un paso previo a desplegar una solución en un cluster de Kubernetes.
 
 ## Requisitos
+- Haber realizado el [Taller 3](taller3-dockerfiles.md)
 Tener una máquina virtual o instancia en cualquier proveedor de nube como Google Cloud, Azure, Amazon o Digital Ocean, o bien una máquina virtual local. De preferencia con Ubuntu 18.04LTS para estandarizar errores a una distribución y dar soporte en el taller.
-En este caso utilizaré Digital Ocean.
 
-## Paso 1: Instalar e iniciar Docker
-Una vez tienes tu instancia y acceso a SSH de la misma, ingresa a la misma. Ejecuta como root o con permisos de root el siguiente comando, para actualizar los repositorios en la máquina virtual recién creada:
+## Paso 1: Descargar Docker Compose e instalarlo
+Para poder descargar Docker Compose debes de ingresar a la página oficial de Docker ubicada en:
+- https://www.docker.com/
+En enlace se encuentra en el sitio en la parte de la documentación oficial, en la sección de Docker Compose, en este momento el enlace es:
+- https://docs.docker.com/compose/install/
+Los pasos consisten en descargar el binario y ubicarlo en una ruta accesible en la terminal, los pasos sugeridos para instalar en Linux son:
+Para descargar el binario:   
 ```
-apt-get update
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
-Luego ejecuta el siguiente comando para instalar Docker 
+Ahora se le agregan los permisos necesarios para ejecutarlo:   
 ```
-apt-get install docker.io
+sudo chmod +x /usr/local/bin/docker-compose
 ```
-Luego iniciar el servicio si esta apagado con:
+Si es necesario ubicarlo en otra ruta podemos ejecutar:   
 ```
-/etc/init.d/docker start
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ```
-## Paso 2: Bajar imágenes del repositorio de Docker en específico la de Ubuntu 18.04
-Para bajar una imagen utilizamos el comando docker pull, en este caso bajaremos la imagen de Ubuntu 18.04 para esto ejecutamos el comando:
+Ahora para probar que podemos accederlo ejecutamos:   
 ```
-docker pull ubuntu:18.04
+docker-compose --version
 ```
-Donde ubuntu es el repositorio y el tag a bajar es 18.04, para mayor referencia puedes visitar 
-https://hub.docker.com/ y bajar la imagen que necesites con el tag que necesites
-## Paso 3: Crear container con Docker y administrarlo
-Para crear una imagen debes de utilizar el comando docker run, en este caso crearemos un container con Ubuntu 18.04 y ejecutaremos dentro el comando /bin/bash, el cual es una consola o terminal, nótese que al terminar la ejecución del /bin/bash con exit, el comando con el que fue creado el container termina su ejecución y el container es finalizado con el estado exit(0), finalizado más no eliminado
+Para desinstalarlo ejecutar:   
 ```
-docker run -it ubuntu:18.04 /bin/bash
+sudo rm /usr/local/bin/docker-compose
 ```
-Al ser creado el container creara un id único, el cual puedes obtener cuando se coloca el nuevo prompt, al terminar de ejecutar el comando anterior, verás algo como:
+## Paso 2: Crear el archivo docker-compose.yml para agrupar microservicios
+Puedes crear un archivo llamado docker-compose.yml en tu ruta actual con el siguiente contenido:
 ```
-root@e6b272bfcbc2:/#
+version: '3'
+services:
+  web:
+    image: "nginx"
+    ports:
+      - "8000:80"
+  redis:
+    image: "redis"
 ```
-Puedes realizar distintas operaciones con este id, regularmente solo necesitarás las primeras 3 o 4 letras del mismo. 
+Este archivo crea 2 containers, uno con el servidor web nginx y otro con una base de datos nosql clave valor redis, nginx se expone en el puerto local 8000 redireccionandolo al puerto 80 del container.   
+## Paso 3: Administrar los microservicios con Docker Compose
+Dentro de la carpeta que contiene le archivo docker-compose.yml ejecutamos:
+```
+docker-compose up -d
+```
+Este comando creara estos 2 containers en modo detach es decir en segundo plano, para poder ejecutar otros comandos para verificar si fueron creados exitosamente, para esto ejecuta:
+```
+docker-compose ps
+```
+Ahora bien si deseas detener estos containers, debes de ejecutar el siguiente comando:
+```
+docker-compose stop
+```_
+Si deseas detener y borrar todo ejecuta:
+```
+docker-compose down
+```
+Puedes agregar el --volumes para borrar volumenes existentes de datos
 
-Continuando, luego ejecuta dentro del container el comando ls para mostrar los archivos actuales en la carpeta que te encuentres
-```
-ls
-```
 
-En otra terminal ingresa y ejecuta el comando docker ps -a podrás ver que dicho container se encuentra en estado activo: verás una salida como la siguiente:
-```
-docker ps -a
-```
-![Alt text](imgs/ps1.png?raw=true "Up time")
-
-Luego en la línea de comandos del container escribe exit, para salir y finalizar el container
-```
-exit 
-```
-Ahora revisa el nuevamente los containers corriendo en otra terminal con:
-```
-docker ps -a
-```
-![Alt text](imgs/ps2.png?raw=true "exit")
-
-Ahora verás que el estado es exit, es decir la ejecución del container finalizo, pero no ha sido destruido.
-
-Ahora para volver a iniciar el container ejecuta:
-```
-docker start id_container
-```
-Esto reinicia la ejecución de container con el id que hallas colocado
-
-Ahora para volver a ingresar, puedes ejecutar
-```
-docker exec -it id_container /bin/bash
-```
-![Alt text](imgs/exec.png?raw=true "Exec")
-
-Y esto ejecutara una nueva consola adicional a la que está ejecutándose por el /bin/bash inicial, y no afectara si la finalizas con exit, el container seguirá ejecutándose.
-
-## Paso 4: Detener y borrar el container
-Para detener el container puedes ejecutar el comando:
-
-```
-docker stop id_container
-```
-Esto solo detendrá su ejecución pero no lo eliminará
-
-Para poder eliminar y borrar el container debes de ejecutar el siguiente comando:
-```
-docker rm id_container
-```
-Para poder eliminarlo debes detener primero el container. En algunos casos debes usar la opción -f para forzar que se borre, según las dependencias con otras imágenes o containers. Puedes comprabar que ya no exista con el comando:
-```
-docker ps -a
-```
+## Referencias
+- https://docs.docker.com/compose/install/
