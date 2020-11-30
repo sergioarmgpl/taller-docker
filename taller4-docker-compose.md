@@ -56,7 +56,7 @@ docker-compose ps
 Ahora bien si deseas detener estos containers, debes de ejecutar el siguiente comando:
 ```
 docker-compose stop
-```_
+```
 Si deseas detener y borrar todo ejecuta:
 ```
 docker-compose down
