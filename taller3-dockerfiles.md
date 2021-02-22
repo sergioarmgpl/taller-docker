@@ -40,6 +40,8 @@ EXPOSE 80  El puerto que expone del container será el 80
 ## Paso 2: Construir imagen y subirla a DockerHub para que sea pública
 Para poder construir una imagen a partir de un Dockerfile, primero debemos ubicarnos en la carpeta que tiene el Dockerfile en este caso taller3-source, luego ejecutamos los siguientes comandos:
 
+En caso de no tener cuenta de docker hub, acceda a [Docker Hub](https://hub.docker.com/) y cree una.
+
 Primero nos logueamos con docker login, ingresando nuestro usuario y contraseña creados en el DockerHub:
 ```
 docker login 

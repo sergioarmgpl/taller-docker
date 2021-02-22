@@ -42,7 +42,15 @@ ifconfig -a
 ```
 y buscar el IP público o bien con el IP público asignado por tu proveedor de la nube, solo debes acceder desde el navegador como
 ```
-http://IP:8001
+http://IP:PORT
+```
+Para acceder desde el host:
+```
+http://IP_HOST:8001
+```
+Para acceder desde el container:
+```
+http://IP_CONTAINER:80
 ```
 y podrás ver la instalación por defecto de Apache, también puedes usar el puerto 80 en el servidor público, colocando -p 80:80 en vez de -p 8001:80
 ## Paso 4: Ver IP del container
