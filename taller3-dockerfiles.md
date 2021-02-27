@@ -1,5 +1,5 @@
 # Taller 3: Creación de imágenes de containers con Dockerfiles  
-Bienvenido a este taller, en este taller aprenderás como manejar los puertos en los containers y cómo permitir que tengan acceso público a través de los mismos. Esto lo lograremos a través de crear un container con Apache instalado en el puerto 80, el cual saldrá por el puerto 80 del host que tiene instalado Docker
+Bienvenido a este taller, en este taller aprenderás a crear tu propia image de Docker y subirla a tu repositorio [Docker Hub](https://hub.docker.com/), luego crearás tu container a partir de esta nueva imagen que creaste y le permitirás que tengan acceso público a través de los puertos. Esto lo lograremos a través de crear un container con Apache instalado en el puerto 80, el cual saldrá por el puerto 8888 del host que tiene instalado Docker
 
 ## Requisitos
 - Haber realizado el [Taller 2](taller2-acceso-puertos.md)
@@ -68,7 +68,7 @@ chmod 777 build.sh
 ./build usuarioDockerHub
 ```
 
-## Paso 3: Crear la imagen creada
+## Paso 3: Utiliza la imagen creada
 En dado caso la imagen sea privada debes de logearte con el usuario correspondiente para poder descargarla. Para poder usarla ejecutarás el siguiente comando:
 
 ```
