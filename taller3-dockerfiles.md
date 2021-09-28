@@ -138,7 +138,7 @@ Nota: La cuenta gratuita de Dockerhub, permite subir imagenes de forma automatic
 
 ## Paso 3: Utiliza la imagen creada
 
-Para poder usarla ejecutarás el siguiente comando:
+Crearemos un container en base a la imagen creada localmente.
 
 ```
 docker run -it -d -p 8888:80 --name=apacheNuevo apache
@@ -158,3 +158,12 @@ docker stats apacheNuevo
 ```
 Presiona Ctrl+C para cancelar el monitoreo del container
 
+## Paso 5: Verificar que container este levantado
+
+Ingresar al navegador web y escribir 
+
+```
+http://<IP>:8888
+```
+
+![talle](taller3-source/foto_navegador.png)
