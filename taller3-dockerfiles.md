@@ -59,50 +59,96 @@ Donde:
 
 ### Opcion2
 
-Clonar este repositorio y hubicarte dentro de la carpet [taller3-source/](taller3-source)
+Clonar este repositorio y hubicarte dentro de la carpet [taller3-source/](taller3-source) el cual contiene los archivos necesarios para los pasos posteriores.
 
 
 
 
 ## Paso 2: Construir imagen y subirla a DockerHub
-Para poder construir una imagen a partir de un Dockerfile, primero debemos ubicarnos en la carpeta que tiene el Dockerfile en este caso taller3-source, luego ejecutamos los siguientes comandos:
+Es importante tener en cuenta que para poder construir una imagen a partir de un Dockerfile, es necesario ubicarse dentro de la carpeta que tiene tiene el archivo Dockerfile.
 
-En caso de no tener cuenta de docker hub, acceda a [Docker Hub](https://hub.docker.com/) y cree una.
+1. **Registrar credenciales de dockerHub:** ejecutar el siguiente comando e ingresar el nombre de usuario y contraseña de la cuenta en [Docker Hub](https://hub.docker.com/). 
 
-Primero nos logueamos con docker login, ingresando nuestro usuario y contraseña creados en el DockerHub:
 ```
 docker login 
 ```
 
-Luego ejecutamos como root el comando docker build para construir la imagen, en esta caso si utilizamos docker images nos mostrará que se acaba de crear una imagen llamada apache, si deseamos borrarla y no esta en uso podemos utilizar el comando docker rmi, si esta en uso debemos borrar los containers asociados a esa imagen
+Tambien en posible autenticarse por medio del siguiente comando:
+
+
+```
+docker login -u <USUARIO> -p <CONTASEÑA>
+```
+
+2. **Construir imagen:** Unicamente tenemos que tomar en cuenta que el archivo Dockerfile se encuentre en el entorno donde ejecutemos el siguiente comando. 
+
 ```
 docker build -t apache .
 ```
 
-Luego tagueamos la imagen local apache con nuestro usuario y el repositorio llamado apache(usuarioDockerHub/apache)
-```
-docker tag apache usuarioDockerHub/apache
+Nota:
+
+La bandera ```-t``` es usada para asignar el nombre del tag que tendra la imagen, en este caso el tag de la imagen sera "apache".
+
+El ```.``` permite informarle a la linea de comandos que el Dockerfile se encuentra en ese entorno.
+
+​		Posible errores:
+
+​			Tag existente: eliminar la imagen que se tiene con un el comando ```docker rmi <ID_IMAGEN>``` 
+
+Para verificar que la imagen fue creada, ingresar el siguiente comando que permite desplegar la metadata de todas las imagenes
+
+``` 
+docker images 
 ```
 
-Ahora subimos la imagen al repositorio
+3. **Taguear la imagen:** Tagueamos la imagen local "apache" con la siguiente estructura
+
 ```
-docker push usuarioDockerHub/apache
+docker tag <IMAGE> <USUARIO_DOCKERHUB>/<NOMBRE>
+```
+​	Nota: ```<NOMBRE>``` es con el que sera visible publicamente en dockerHub
+
+Ejecutar el siguiente comando:
+
+```
+docker tag apache <USUARIO_DOCKERHUB>/apache
 ```
 
-Si deseas puedes usar el script build.sh dandole permisos de ejecución al mismo, ejecutandoló y mandando de parámetro el nombre del usuario del DockerHub(Debes estar en la carpeta del Dockerfile)
+4. **Subir la imagen al repositorio dockerHub**
+
+```
+docker push <USUARIO_DOCKERHUB>/apache
+```
+
+Listo, nuestra imagen ha sido cargada.
+
+*Extra:*
+
+Si deseas puedes usar el script [build.sh](taller3-source/build.sh) para realizar este paso, es necesario asignarle permisos de ejecución al script.
+
+El siguiente comando es usado en el sistema operativo Linux, el cual determina los permisos al script para ejecutarse. E invoca la ejecucion del script con un parametro que es el nombre de usuario en dockerHub.
+
 ```
 chmod 777 build.sh
-./build usuarioDockerHub
+./build <USUARIO_DOCKERHUB>
 ```
+
+Nota: La cuenta gratuita de Dockerhub, permite subir imagenes de forma automatica. En caso de requerir subir imagenes privadas, es necesario ingresar en [Docker Hub](https://hub.docker.com/). 
 
 ## Paso 3: Utiliza la imagen creada
-En dado caso la imagen sea privada debes de logearte con el usuario correspondiente para poder descargarla. Para poder usarla ejecutarás el siguiente comando:
+
+Para poder usarla ejecutarás el siguiente comando:
 
 ```
-docker run -it -d -p 8888:80 --name=apacheNuevo usuarioDockerHub/apache
+docker run -it -d -p 8888:80 --name=apacheNuevo apache
 ```
 
-Ahora la imagen ya esta ejecutándose
+Ahora el container se esta ejecuando, el nombre del container es "apacheNuevo". Para verificar que se esta ejecuatando ingresar el siguiente comando:
+
+```
+docker ps 
+```
 
 ## Paso 4: Monitoreo
 Para monitorear tu container puedes ejecutar el siguiente comando:
@@ -112,4 +158,3 @@ docker stats apacheNuevo
 ```
 Presiona Ctrl+C para cancelar el monitoreo del container
 
-No olvides detener una imagen sino la estas utilizando.
