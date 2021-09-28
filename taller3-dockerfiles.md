@@ -169,4 +169,4 @@ http://<IP>:8888
 ![Foto](taller3-source/foto_navegador.png)
 
 
-Ir a taller 4 [Aqui](taller4-docker-compose.md)
+Ir a taller 4 : Uso de Docker Compose [Aqui](taller4-docker-compose.md)
