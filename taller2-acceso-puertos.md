@@ -25,7 +25,7 @@ apt-get update
 ```
 Luego instala Apache con el siguiente comando:
 ```
-apt-get install nginx
+apt-get install -y nginx
 ```
 Luego inicia apache con el comando
 ```
