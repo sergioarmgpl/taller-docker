@@ -12,7 +12,7 @@ Luego de haber ingresado a tu máquina virtual con Docker instalado, ejecutar el
 docker run -it -d -p 8001:80 --name=webserver ubuntu:22.04 /bin/bash
 ```
 ### Explicación
-Este comando lo que hará es que creará un container con la imagen del repositorio de Ubuntu en el DockerHub con su tag 18.04, es decir Ubuntu versión 22.04. En este caso creamos la imagen con el parámetro -d que significa que se ejecute en segundo plano o como daemon, y que exponga los puertos 80 del container con el 8001 del host, luego en vez de acceder al container por su ID, lo accesamos por el nombre "webserver" y finalmente se crea el container ejecutando el comando /bin/bash dentro de él.
+Este comando lo que hará es que creará un container con la imagen del repositorio de Ubuntu en el DockerHub con su tag 22.04, es decir Ubuntu versión 22.04. En este caso creamos la imagen con el parámetro -d que significa que se ejecute en segundo plano o como daemon, y que exponga los puertos 80 del container con el 8001 del host, luego en vez de acceder al container por su ID, lo accesamos por el nombre "webserver" y finalmente se crea el container ejecutando el comando /bin/bash dentro de él.
 
 ## Paso 2: Acceder al container que esta en segundo plano
 Para acceder al container debes de ejecutar el comando:
