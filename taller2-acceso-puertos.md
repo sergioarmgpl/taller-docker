@@ -52,7 +52,11 @@ Para acceder desde el container:
 ```
 http://IP_CONTAINER:80
 ```
-y podrás ver la instalación por defecto de Apache, también puedes usar el puerto 80 en el servidor público, colocando -p 80:80 en vez de -p 8001:80
+O bien con curl
+```
+curl http://IP_HOST:8001
+```
+y podrás ver la instalación por defecto de NGINX, también puedes usar el puerto 80 en el servidor público, colocando -p 80:80 en vez de -p 8001:80
 ## Paso 4: Ver IP del container
 En algunos casos, como prueba local podrás acceder al IP del container, ya sea desde adentro del mismo con ifconfig o bien con el comando docker en otra consola ejecutando:
 ```
