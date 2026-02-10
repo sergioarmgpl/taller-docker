@@ -60,5 +60,5 @@ y podrás ver la instalación por defecto de NGINX, también puedes usar el puer
 ## Paso 4: Ver IP del container
 En algunos casos, como prueba local podrás acceder al IP del container, ya sea desde adentro del mismo con ifconfig o bien con el comando docker en otra consola ejecutando:
 ```
-docker inspect apache | grep IPAddress
+docker inspect webserver | grep IPAddress
 ```
