@@ -89,3 +89,7 @@ Para poder eliminarlo debes detener primero el container. En algunos casos debes
 ```
 docker ps -a
 ```
+
+
+
+Ir a taller 2: Acceso público de containers por puertos  [Aqui](taller2-acceso-puertos.md)

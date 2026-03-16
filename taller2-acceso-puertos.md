@@ -62,3 +62,5 @@ En algunos casos, como prueba local podrás acceder al IP del container, ya sea 
 ```
 docker inspect webserver | grep IPAddress
 ```
+
+Ir a taller 3: Creación de imágenes de containers con Dockerfiles [Aqui](taller3-dockerfiles.md)
