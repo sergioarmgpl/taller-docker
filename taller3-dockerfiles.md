@@ -1,5 +1,5 @@
 # Taller 3: Creación de imágenes de containers con Dockerfiles  
-Bienvenido a este taller, en este taller aprenderás a crear tu propia image de Docker y subirla a tu repositorio [Docker Hub](https://hub.docker.com/), luego crearás tu container a partir de esta nueva imagen que creaste y le permitirás que tengan acceso público a través de los puertos. Esto lo lograremos a través de crear un container con Apache instalado en el puerto 80, el cual saldrá por el puerto 8888 del host que tiene instalado Docker
+Bienvenido a este taller, en este taller aprenderás a crear tu propia image de Docker y subirla a tu repositorio [Docker Hub](https://hub.docker.com/), luego crearás tu container a partir de esta nueva imagen que creaste y le permitirás que tengan acceso público a través de los puertos. Esto lo lograremos a través de crear un container con NGINX instalado en el puerto 80, el cual saldrá por el puerto 8888 del host que tiene instalado Docker
 
 ## Requisitos
 - Haber realizado el [Taller 2](taller2-acceso-puertos.md)
@@ -30,7 +30,7 @@ A continuación esta la explicación de cada una de las líneas del Dockerfile
 FROM indica que se descargará la imagen de ubuntu con el tag 18.04
 MAINTAINER Indica el nombre del creador del container
 RUN apt-get update actualiza los repositorios de la imagen descargada
-RUN apt-get install -y nginx instala apache2 en la imagen
+RUN apt-get install -y nginx instala nginx en la imagen
 RUN rm /usr/share/nginx/html/*  borra cualquier contenido dentrol del container en la carpeta /var/www/html
 COPY index.html /usr/share/nginx/html copia el archivo index.html dentro del container en la carpeta /var/www/html
 CMD ["nginx", "-g", "daemon off;"]  define el comando que se ejecutará dentro del container con docker run
@@ -47,19 +47,19 @@ Primero nos logueamos con docker login, ingresando nuestro usuario y contraseña
 docker login 
 ```
 
-Luego ejecutamos como root el comando docker build para construir la imagen, en esta caso si utilizamos docker images nos mostrará que se acaba de crear una imagen llamada apache, si deseamos borrarla y no esta en uso podemos utilizar el comando docker rmi, si esta en uso debemos borrar los containers asociados a esa imagen
+Luego ejecutamos como root el comando docker build para construir la imagen, en esta caso si utilizamos docker images nos mostrará que se acaba de crear una imagen llamada nginx, si deseamos borrarla y no esta en uso podemos utilizar el comando docker rmi, si esta en uso debemos borrar los containers asociados a esa imagen
 ```
-docker build -t apache .
+docker build -t nginx .
 ```
 
-Luego tagueamos la imagen local apache con nuestro usuario y el repositorio llamado apache(usuarioDockerHub/apache)
+Luego tagueamos la imagen local nginx con nuestro usuario y el repositorio llamado nginx(usuarioDockerHub/nginx)
 ```
-docker tag apache usuarioDockerHub/apache
+docker tag nginx usuarioDockerHub/nginx
 ```
 
 Ahora subimos la imagen al repositorio
 ```
-docker push usuarioDockerHub/apache
+docker push usuarioDockerHub/nginx
 ```
 
 Si deseas puedes usar el script build.sh dandole permisos de ejecución al mismo, ejecutandoló y mandando de parámetro el nombre del usuario del DockerHub(Debes estar en la carpeta del Dockerfile)
