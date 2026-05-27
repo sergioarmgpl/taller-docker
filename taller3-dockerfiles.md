@@ -10,13 +10,13 @@ Debes de crear un Dockerfile e index.html con tu editor de línea de comandos fa
 
 Primero debes crear el archivo llamado "Dockerfile" con el siguiente contenido:
 ```
-FROM ubuntu:18.04
-MAINTAINER CloudNativePlusGT
+FROM ubuntu:24.04
 RUN apt-get update
-RUN apt-get install -y apache2
-RUN rm /var/www/html/*
-COPY index.html /var/www/html/
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+RUN apt-get install -y nginx
+RUN rm /usr/share/nginx/html/*
+COPY index.html /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
+
 EXPOSE 80
 ```
 
@@ -30,10 +30,10 @@ A continuación esta la explicación de cada una de las líneas del Dockerfile
 FROM indica que se descargará la imagen de ubuntu con el tag 18.04
 MAINTAINER Indica el nombre del creador del container
 RUN apt-get update actualiza los repositorios de la imagen descargada
-RUN apt-get install apache2 instala apache2 en la imagen
-RUN rm /var/www/html/*  borra cualquier contenido dentrol del container en la carpeta /var/www/html
-COPY index.html /var/www/html/ copia el archivo index.html dentro del container en la carpeta /var/www/html
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]  define el comando que se ejecutará dentro del container con docker run
+RUN apt-get install -y nginx instala apache2 en la imagen
+RUN rm /usr/share/nginx/html/*  borra cualquier contenido dentrol del container en la carpeta /var/www/html
+COPY index.html /usr/share/nginx/html copia el archivo index.html dentro del container en la carpeta /var/www/html
+CMD ["nginx", "-g", "daemon off;"]  define el comando que se ejecutará dentro del container con docker run
 EXPOSE 80  El puerto que expone del container será el 80
 
 
@@ -72,7 +72,7 @@ chmod 777 build.sh
 En dado caso la imagen sea privada debes de logearte con el usuario correspondiente para poder descargarla. Para poder usarla ejecutarás el siguiente comando:
 
 ```
-docker run -it -d -p 8888:80 --name=apacheNuevo usuarioDockerHub/apache
+docker run -it -d -p 8888:80 --name=nginxNuevo usuarioDockerHub/nginx
 ```
 
 Ahora la imagen ya esta ejecutándose
@@ -81,7 +81,7 @@ Ahora la imagen ya esta ejecutándose
 Para monitorear tu container puedes ejecutar el siguiente comando:
 
 ```
-docker stats apacheNuevo
+docker stats nginxNuevo
 ```
 Presiona Ctrl+C para cancelar el monitoreo del container
 
