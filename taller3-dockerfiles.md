@@ -10,7 +10,7 @@ Debes de crear un Dockerfile e index.html con tu editor de línea de comandos fa
 
 Primero debes crear el archivo llamado "Dockerfile" con el siguiente contenido:
 ```
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 RUN apt-get update
 RUN apt-get install -y nginx
 RUN rm /usr/share/nginx/html/*
