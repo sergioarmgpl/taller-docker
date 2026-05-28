@@ -13,8 +13,8 @@ Primero debes crear el archivo llamado "Dockerfile" con el siguiente contenido:
 FROM ubuntu:22.04
 RUN apt-get update
 RUN apt-get install -y nginx
-RUN rm /usr/share/nginx/html/*
-COPY index.html /usr/share/nginx/html
+RUN rm /var/www/html/*
+COPY index.html //var/www/html/
 CMD ["nginx", "-g", "daemon off;"]
 
 EXPOSE 80
