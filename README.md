@@ -13,6 +13,9 @@ Para clonar el repositorio ejecuta el comando:
 ```
 git clone https://github.com/sergioarmgpl/taller-docker.git
 ```
+### Usar ambiente de KillerCoda de Ubuntu
+Para acceder a KillerCoda accede al URL y crea una cuenta para usar el ambiente de forma gratuita:
+- https://killercoda.com/playgrounds/scenario/ubuntu
 
 ### Usar el servidor del demo
 Para conectarte al servidor del demo baja la llave ubicada en la carpeta key y ejecuta:
