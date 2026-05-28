@@ -27,7 +27,7 @@ Funcionó la creación de tu primer container con <b>Dockerfiles</b>
 
 ### Explicación
 A continuación esta la explicación de cada una de las líneas del Dockerfile
-FROM indica que se descargará la imagen de ubuntu con el tag 18.04
+FROM indica que se descargará la imagen de ubuntu con el tag 22.04
 MAINTAINER Indica el nombre del creador del container
 RUN apt-get update actualiza los repositorios de la imagen descargada
 RUN apt-get install -y nginx instala nginx en la imagen
