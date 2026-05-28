@@ -23,11 +23,11 @@ Luego de ingresar al container actualiza el repositorio de ubuntu:
 ```
 apt-get update
 ```
-Luego instala Apache con el siguiente comando:
+Luego instala NGINX con el siguiente comando:
 ```
 apt-get install -y nginx
 ```
-Luego inicia apache con el comando
+Luego inicia NGINX con el comando
 ```
 /etc/init.d/nginx start
 ```
